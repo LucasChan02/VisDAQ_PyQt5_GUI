@@ -1,7 +1,7 @@
 from ui_file import Ui_Form
 import sys
-from PyQt5.QtWidgets import QDialog, QApplication, QMainWindow, QWidget, QFileDialog, QMessageBox
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6.QtWidgets import QDialog, QApplication, QMainWindow, QWidget, QFileDialog, QMessageBox
+from PyQt6 import QtCore, QtGui, QtWidgets
 from plotter import plotter_and_data
 from mark10_force_reader import mark10_f_values, save_to_file, random_generator
 from force_gauges import conditions_for_proximal
@@ -223,7 +223,7 @@ class AppWindow(QWidget):
 		self.controller.rotate_axis_signal(-1,50)
 
 def close_it(app, ui):
-	app.exec_()
+	app.exec()
 	try:
 		ui.closing_in()
 	except:

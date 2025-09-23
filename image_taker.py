@@ -1,5 +1,5 @@
 import cv2
-from PyQt5 import QtCore
+from PyQt6 import QtCore
 import numpy as np
 import multiprocessing
 import time

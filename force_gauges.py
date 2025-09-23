@@ -1,8 +1,8 @@
 from mark10_force_reader import mark10_f_values, save_to_file, random_generator
 import queue
 import os
-from PyQt5.QtWidgets import QMessageBox, QGraphicsPixmapItem
-from PyQt5 import QtWidgets, QtGui
+from PyQt6.QtWidgets import QMessageBox, QGraphicsPixmapItem
+from PyQt6 import QtWidgets, QtGui
 from errors import show_error
 from image_taker import image_taker
 from forsentek_force_reader import forsentek_f_values

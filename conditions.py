@@ -1,11 +1,11 @@
 
 import sys
 # from PyQt5 import QtGui
-from PyQt5.QtCore import QDir, Qt
-from PyQt5.QtGui import QFont, QPalette
-from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
-        QErrorMessage, QFileDialog, QFontDialog, QFrame, QGridLayout,
-        QInputDialog, QLabel, QLineEdit, QMessageBox, QPushButton)
+from PyQt6.QtCore import QDir, Qt
+from PyQt6.QtGui import QFont, QPalette
+from PyQt6.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
+    QErrorMessage, QFileDialog, QFontDialog, QFrame, QGridLayout,
+    QInputDialog, QLabel, QLineEdit, QMessageBox, QPushButton)
 from os.path import expanduser
 
 

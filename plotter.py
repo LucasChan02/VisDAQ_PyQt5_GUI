@@ -2,7 +2,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
-from PyQt5.QtWidgets import QCheckBox
+from PyQt6.QtWidgets import QCheckBox
 import numpy as np
 
 class plotter_and_data():

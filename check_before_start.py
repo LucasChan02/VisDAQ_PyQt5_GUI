@@ -1,5 +1,5 @@
 import os 
-from PyQt5.QtWidgets import QMessageBox
+from PyQt6.QtWidgets import QMessageBox
 from errors import show_error
 
 class check_before_start():

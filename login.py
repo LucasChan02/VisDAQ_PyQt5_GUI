@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt6 import QtWidgets
 import pickle
 import hashlib
 
@@ -7,7 +7,7 @@ class Login(QtWidgets.QDialog):
         super(Login, self).__init__(parent)
         self.textName = QtWidgets.QLineEdit(self)
         self.textPass = QtWidgets.QLineEdit(self)
-        self.textPass.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.textPass.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.username = QtWidgets.QLabel(self)
         self.password = QtWidgets.QLabel(self)
         self.username.setText("Username")

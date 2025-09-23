@@ -1,4 +1,5 @@
-from PyQt5 import QtCore
+from PyQt6 import QtCore
+# import PySide6.QtCore
 import time
 import serial
 import serial.tools.list_ports
