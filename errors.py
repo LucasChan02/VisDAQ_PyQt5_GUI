@@ -35,23 +35,23 @@ class show_error(QDialog):
 		self.reply = QMessageBox.information(self,title, error_message)
 
 	def test_name_not_specified(self):
-	reply = QMessageBox.critical(self, "Test name not specified",
+		reply = QMessageBox.critical(self, "Test name not specified",
 					 "Test name is not specified. Please specify test name and try again.",      ##### error with test name
 					 QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
 		return reply
 
 	def directory_already_exist(self):
-	reply = QMessageBox.critical(self, "Wrong Directory",              ### error message
+		reply = QMessageBox.critical(self, "Wrong Directory",              ### error message
 					 "Directory does not exist ",
 					 QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
 		return reply
 
 	def test_done_before(self):
-	msgBox = QMessageBox(QMessageBox.Icon.Warning, "QMessageBox.warning()",
+		msgBox = QMessageBox(QMessageBox.Icon.Warning, "QMessageBox.warning()",
 				 "Already exist", QMessageBox.StandardButtons(QMessageBox.StandardButton.NoButton), self)
-	msgBox.addButton("Overwrite", QMessageBox.ButtonRole.AcceptRole)
-	msgBox.addButton("Change", QMessageBox.ButtonRole.RejectRole)
-		return msgBox.exec_()
+		msgBox.addButton("Overwrite", QMessageBox.ButtonRole.AcceptRole)
+		msgBox.addButton("Change", QMessageBox.ButtonRole.RejectRole)
+		return msgBox.exec()
 
 	def filename_not_specified(self):
 		title = "File name not specified"
@@ -84,25 +84,25 @@ class show_error(QDialog):
 		pass
 
 	def controller_connection_problem(self):
-	_ = QMessageBox.critical(self, "Problem with controller",              ### error message
+		_ = QMessageBox.critical(self, "Problem with controller",              ### error message
 				    "Unable to connect controller. You will not be able to perform any test if controller is not connected. Please connect properly and try again. ",
 				    QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
 		pass
 
 	def controller_not_found(self):
-	_ = QMessageBox.critical(self, "Controller not found",              ### error message
+		_ = QMessageBox.critical(self, "Controller not found",              ### error message
 				    "Unable to find controller. You will not be able to perform any test if controller is not connected. Please make sure it is connected properly and try again. ",
 				    QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
 		pass
 
 	def controller_not_connected(self):   ##### for not starting test
-	_ = QMessageBox.critical(self, "Controller not connected",              ### error message
+		_ = QMessageBox.critical(self, "Controller not connected",              ### error message
 				    "Test cannot be performed, because controller is not connected. Please connect the controller and restart the software in order to perform test.",
 				    QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
 		pass 
 
 	def cannot_move_motor(self):
-	_ = QMessageBox.critical(self, "Action cannot be performed",              ### error message
+		_ = QMessageBox.critical(self, "Action cannot be performed",              ### error message
 				    "Action cannot be performed, because controller is not connected. Please connect the controller and restart the software in order to perform test.",
 				    QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
 		pass 
