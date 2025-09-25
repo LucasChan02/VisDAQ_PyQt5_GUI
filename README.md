@@ -1,4 +1,4 @@
-# VisDAQ_PyQt5_GUI
+# VisDAQ_PyQt_GUI
 
 ## Dependencies 
 

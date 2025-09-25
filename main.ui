@@ -1,24 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>VisDAQ</class>
+ <widget class="QWidget" name="VisDAQ">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1221</width>
-    <height>938</height>
+    <width>1285</width>
+    <height>975</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>4096</width>
+    <height>2160</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>VisDAQ</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_5">
+   <property name="spacing">
+    <number>4</number>
+   </property>
+   <property name="leftMargin">
+    <number>4</number>
+   </property>
+   <property name="topMargin">
+    <number>4</number>
+   </property>
+   <property name="rightMargin">
+    <number>4</number>
+   </property>
+   <property name="bottomMargin">
+    <number>4</number>
+   </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>4</number>
+     </property>
      <item>
       <widget class="QGraphicsView" name="graphicsView">
        <property name="sizePolicy">
@@ -35,31 +62,40 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QLabel" name="smt_logo">
-       <property name="maximumSize">
+     <item alignment="Qt::AlignLeft">
+      <widget class="QLCDNumber" name="r_t">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
         <size>
-         <width>400</width>
-         <height>400</height>
+         <width>100</width>
+         <height>24</height>
         </size>
        </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/logo/images/aa.png);</string>
+       <property name="maximumSize">
+        <size>
+         <width>16777206</width>
+         <height>16777215</height>
+        </size>
        </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+       <property name="digitCount">
+        <number>6</number>
        </property>
       </widget>
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout">
+       <property name="spacing">
+        <number>4</number>
+       </property>
        <item row="0" column="0" colspan="2">
         <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,0,0,0">
          <property name="spacing">
-          <number>6</number>
+          <number>4</number>
          </property>
          <item row="5" column="0">
           <widget class="QLabel" name="record_label">
@@ -184,6 +220,9 @@
          </item>
          <item row="8" column="0" colspan="3">
           <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <property name="spacing">
+            <number>4</number>
+           </property>
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
@@ -291,6 +330,9 @@
          </item>
          <item row="9" column="0" colspan="3">
           <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <property name="spacing">
+            <number>4</number>
+           </property>
            <item>
             <widget class="QPushButton" name="move_axis_left_end">
              <property name="sizePolicy">
@@ -301,8 +343,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>90</width>
-               <height>70</height>
+               <width>40</width>
+               <height>40</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -327,14 +369,14 @@ border-image: url(:/logo/images/two_left_after_.png);}</string>
             <widget class="QPushButton" name="move_axis_left_one">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>60</horstretch>
-               <verstretch>60</verstretch>
+               <horstretch>20</horstretch>
+               <verstretch>20</verstretch>
               </sizepolicy>
              </property>
              <property name="minimumSize">
               <size>
-               <width>70</width>
-               <height>70</height>
+               <width>40</width>
+               <height>40</height>
               </size>
              </property>
              <property name="font">
@@ -385,8 +427,8 @@ border-image: url(:/logo/images/one_left_after_.png);
              </property>
              <property name="minimumSize">
               <size>
-               <width>70</width>
-               <height>70</height>
+               <width>40</width>
+               <height>40</height>
               </size>
              </property>
              <property name="font">
@@ -425,8 +467,8 @@ border-image: url(:/logo/images/one_right_after_.png);
              </property>
              <property name="minimumSize">
               <size>
-               <width>90</width>
-               <height>70</height>
+               <width>40</width>
+               <height>40</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -464,6 +506,9 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
          </item>
          <item row="5" column="1">
           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="spacing">
+            <number>4</number>
+           </property>
            <item>
             <widget class="QCheckBox" name="record_proximal_force_gauge">
              <property name="font">
@@ -521,21 +566,43 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="graphing_layout"/>
+    <layout class="QVBoxLayout" name="graphing_layout">
+     <property name="spacing">
+      <number>4</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+    </layout>
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_6">
+     <property name="spacing">
+      <number>4</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
      <item>
       <widget class="QGroupBox" name="proximal_force_gauge_groupbox">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="minimumSize">
         <size>
-         <width>320</width>
+         <width>240</width>
          <height>200</height>
         </size>
        </property>
@@ -646,7 +713,7 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
               </font>
              </property>
              <property name="text">
-              <string>0.02 N</string>
+              <string>0.2 N</string>
              </property>
             </widget>
            </item>
@@ -702,12 +769,11 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
              <property name="font">
               <font>
                <pointsize>10</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
+               <bold>false</bold>
               </font>
              </property>
              <property name="text">
-              <string>0.02 N</string>
+              <string>2.0 N</string>
              </property>
             </widget>
            </item>
@@ -793,7 +859,7 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
      <item>
       <widget class="QGroupBox" name="distal_force_gauge_groupbox">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -814,12 +880,18 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>21</y>
           <width>349</width>
-          <height>162</height>
+          <height>161</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QPushButton" name="connect_distal_force_gauge">
            <property name="sizePolicy">
@@ -873,6 +945,9 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <property name="spacing">
+            <number>4</number>
+           </property>
            <item alignment="Qt::AlignLeft">
             <widget class="QLabel" name="distal_force_value_label">
              <property name="sizePolicy">
@@ -932,6 +1007,9 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <property name="spacing">
+            <number>4</number>
+           </property>
            <item>
             <widget class="QLabel" name="distal_maximum_force_label">
              <property name="sizePolicy">
@@ -1055,6 +1133,9 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
      </item>
      <item alignment="Qt::AlignHCenter">
       <widget class="QPushButton" name="connect_camera">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -1063,20 +1144,38 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>200</width>
-         <height>40</height>
+         <width>150</width>
+         <height>32</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>16</pointsize>
+         <pointsize>14</pointsize>
         </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 170, 0);</string>
        </property>
        <property name="text">
         <string>Connect camera</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -1085,19 +1184,22 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
-         <verstretch>2</verstretch>
+         <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="minimumSize">
         <size>
-         <width>250</width>
-         <height>60</height>
+         <width>150</width>
+         <height>32</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>26</pointsize>
+         <pointsize>18</pointsize>
         </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
@@ -1210,7 +1312,7 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
        </widget>
       </widget>
      </item>
-     <item>
+     <item alignment="Qt::AlignHCenter">
       <widget class="QPushButton" name="clear_all_button">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1220,13 +1322,13 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>300</width>
-         <height>0</height>
+         <width>150</width>
+         <height>32</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>20</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="text">
@@ -1239,7 +1341,7 @@ border-image: url(:/logo/images/two_right_after_.png);}</string>
   </layout>
  </widget>
  <resources>
-  <include location="../new.qrc"/>
+  <include location="new.qrc"/>
  </resources>
  <connections/>
 </ui>

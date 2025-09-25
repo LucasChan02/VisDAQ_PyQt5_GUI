@@ -86,25 +86,25 @@ class show_error(QDialog):
 	def controller_connection_problem(self):
 		_ = QMessageBox.critical(self, "Problem with controller",              ### error message
 				    "Unable to connect controller. You will not be able to perform any test if controller is not connected. Please connect properly and try again. ",
-				    QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
+				    QMessageBox.StandardButton(QMessageBox.StandardButton.Retry))
 		pass
 
 	def controller_not_found(self):
 		_ = QMessageBox.critical(self, "Controller not found",              ### error message
 				    "Unable to find controller. You will not be able to perform any test if controller is not connected. Please make sure it is connected properly and try again. ",
-				    QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
+				    QMessageBox.StandardButton(QMessageBox.StandardButton.Retry))
 		pass
 
 	def controller_not_connected(self):   ##### for not starting test
 		_ = QMessageBox.critical(self, "Controller not connected",              ### error message
 				    "Test cannot be performed, because controller is not connected. Please connect the controller and restart the software in order to perform test.",
-				    QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
+				    QMessageBox.StandardButton(QMessageBox.StandardButton.Retry))
 		pass 
 
 	def cannot_move_motor(self):
 		_ = QMessageBox.critical(self, "Action cannot be performed",              ### error message
 				    "Action cannot be performed, because controller is not connected. Please connect the controller and restart the software in order to perform test.",
-				    QMessageBox.StandardButtons(QMessageBox.StandardButton.Retry))
+				    QMessageBox.StandardButton(QMessageBox.StandardButton.Retry))
 		pass 
 
 	def proximal_gauge_not_connected(self):
