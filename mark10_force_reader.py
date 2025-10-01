@@ -14,7 +14,7 @@ class mark10_f_values(QtCore.QThread):
 
 	def __init__(self):
 		super(mark10_f_values, self).__init__()
-		self.com = "COM3"
+		self.com = "COM7"
 		self.should_read = False                                   ### Flag which will decide should stop or not
 		self.zero_value = 0
 		self.read_value = 0
