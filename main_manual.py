@@ -37,15 +37,9 @@ class AppWindow(QWidget):
 
 		# --- UI Adjustments for Manual/Single Gauge Setup ---
 		# Hide/Disable motor control elements (assuming their object names from ui_file.py)
-		self.ui.select_motor_label.setVisible(False)
-		self.ui.is_roller.setVisible(False)
-		self.ui.is_axis.setVisible(False)
 		self.ui.speed_label.setText("Recording Duration (s):") # Re-purpose for duration input
 		self.ui.distance_label.setText("Displacement Increment (mm):") # Re-purpose for manual step input
-		
-		# Hide distal gauge elements
-		self.ui.distal_force_gauge_groupbox.setVisible(False) # Hides all manual motor control buttons
-		
+				
 		# --- Plotting Setup ---
 		self.plotter = plotter_and_data_single(self.ui)
 		self.ui.graphing_layout.addWidget(self.plotter.canvas)
@@ -69,7 +63,6 @@ class AppWindow(QWidget):
 			self.ui.connect_proximal_force_gauge.setText("Connect Force Gauge")
 		
 		self.ui.record_proximal_force_gauge.setEnabled(False)
-		self.ui.record_distal_force_gauge.setVisible(False) # Should already be hidden, but disable just in case
 		
 		# --- GUI Update Timer ---
 		# Timer for regular GUI updates (e.g., displaying force values, plotting)
@@ -115,11 +108,7 @@ class AppWindow(QWidget):
 			self.plotter.temp_proximal_force.append(force)
 			self.plotter.temp_time.append(round(ti, 2))
 			self.plotter.temp_displacement.append(displacement)
-
-			# Update real-time display of force and virtual displacement on video overlay
-			self.gauge_handler.images_from_camera.displacement = displacement
-			self.gauge_handler.images_from_camera.p_value = force
-
+			
 			self.ui.r_t.display(round(ti, 1)) # Update LCD with elapsed time
 		else:
 			# Test finished: stop timer, set status, save data, and update plot
@@ -136,22 +125,16 @@ class AppWindow(QWidget):
 		pass
 
 	def update_gui(self):
-		"""Method to update the GUI elements regularly (real-time force value and camera feed)."""
+		"""Method to update the GUI elements regularly (real-time force value)."""
 		# Update displayed force value
 		self.ui.proximal_force_value.setText(f"{self.gauge_handler.proximal_thread.present_reading:.3f} N")
-		
-		# # Capture and display camera image
-		# self.gauge_handler.got_image()
 		
 		# If a test is running, update the plot
 		if self.current_running_status:
 			self.plotter.plot_now()
 			
 	def save_and_finish_test(self, file_path):
-		"""Finalizes recording by stopping video, saving data, and updating UI results."""
-		
-		if self.ui.record_video.isChecked():
-			self.gauge_handler.images_from_camera.should_record = False # Stop video recording
+		"""Finalizes recording by saving data, and updating UI results."""
 
 		# Use the same save_to_file structure, but only for proximal data
 		self.gauge_handler.saver_thread.file_name = file_path
@@ -232,16 +215,8 @@ class AppWindow(QWidget):
 
 			# 1. Setup Data Folder
 			os.makedirs(f"{save_dir}/{test_name}", exist_ok=True)
-			
-			# 2. Start Video Recording
-			if self.ui.record_video.isChecked():
-				video_file = f"{save_dir}/{test_name}/video.avi"
-				self.gauge_handler.images_from_camera.start_recording(duration, video_file)
-				self.gauge_handler.images_from_camera.record_time = duration
-				self.gauge_handler.images_from_camera.video_file_name = video_file
-				self.gauge_handler.images_from_camera.should_record = True
-			
-			# 3. Prepare Plotter and Start Timer
+						
+			# 2. Prepare Plotter and Start Timer
 			self.gauge_handler.proximal_zero_clicked() # Zero the force gauge
 			self.plotter.reset_temp_data()
 			self.plotter.what_plot = "proximal"
@@ -259,8 +234,6 @@ class AppWindow(QWidget):
 		# """Handles cleanup when closing the application."""
 		if self.current_running_status:
 			self.read_data_timer.stop()
-			if self.ui.record_video.isChecked():
-				self.gauge_handler.images_from_camera.should_record = False  # Stop video recording
 		self.gauge_handler.proximal_thread.stop()  # Stop the force gauge thread
 
 

@@ -38,7 +38,7 @@ class image_taker:
 # End of Placeholder classes
 
 class single_gauge_conditions():
-	"""Manages the single Mark-10 force gauge connection, data handling, and camera interface."""
+	"""Manages the single Mark-10 force gauge connection, data handling."""
 
 	def __init__(self, ui):
 		self.ui = ui
@@ -49,7 +49,6 @@ class single_gauge_conditions():
 		
 		# --- Connection Status Flags ---
 		self.proximal_connected = False
-		self.camera_connected = False
 
 		# --- General Properties ---
 		# self.colors = colors() # Color utility instance - removed import reliance
@@ -64,9 +63,12 @@ class single_gauge_conditions():
 		self.proximal_thread.mark10_not_found_signal.connect(self.proximal_not_found)
 		self.proximal_thread.mark10_connection_lost_signal.connect(self.proximal_connection_lost)
 
+		# --- Data Saving ---
+		self.saver_thread = save_to_file() # QThread for saving data to file
+
 		# Connect UI buttons for proximal gauge control are connected in main_manual.py
-		
-		# --- Camera and Graphics View Setup -------
+
+	"""		# --- Camera and Graphics View Setup -------
 		self.scene = QtWidgets.QGraphicsScene() # Graphics scene for displaying camera feed
 		# Initial setup of scene for layout
 		self.ui.graphing_layout.addWidget(QtWidgets.QGraphicsView(self.scene)) 
@@ -82,27 +84,10 @@ class single_gauge_conditions():
 		# Initialize camera connection (optional, as main_manual doesn't explicitly connect/disconnect)
 		# self.images_from_camera.connect_cam() 
 		# self.images_from_camera.start()     
-
-		# --- Data Saving ---
-		self.saver_thread = save_to_file() # QThread for saving data to file
-
-	# def got_image(self):
-	# 	"""Receives an image from the camera thread and displays it in the QGraphicsView."""
-	# 	# Camera is implicitly connected/run in main_manual or assumed running
-	# 	if True: # Always attempt if hardware is ready
-	# 		try:
-	# 			image = self.images_from_camera.final_image # Get the latest processed image
-	# 			if image is not None:
-	# 				# Convert OpenCV image (numpy array) to QImage and then to QPixmap for display
-	# 				q_image = QtGui.QImage(image.data, image.shape[1], image.shape[0], image.strides[0], QtGui.QImage.Format.Format_RGB888)
-	# 				self.pixmap = QtGui.QPixmap.fromImage(q_image)
-	# 				self.pixmap_item.setPixmap(self.pixmap) # Set the pixmap to the QGraphicsPixmapItem
-	# 		except Exception as e:
-	# 			# print(f"Could not change video frame: {e}") 
-	# 			pass
+	"""
 
 	def connect_proximal(self):
-		"""Connects or disconnects the single (Mark-10) force gauge and updates the UI."""
+		#Connects or disconnects the single (Mark-10) force gauge and updates the UI.
 		if self.proximal_connected:
 			self.proximal_connected = False
 			self.proximal_thread.stop() # Stop the force gauge reading thread

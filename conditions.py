@@ -1,6 +1,4 @@
-
 import sys
-# from PyQt5 import QtGui
 from PyQt6.QtCore import QDir, Qt
 from PyQt6.QtGui import QFont, QPalette
 from PyQt6.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
