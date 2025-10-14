@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QApplication, QWidget, QFileDialog, QMessageBox
 from PyQt6 import QtCore, QtGui
 from plotter_single import plotter_and_data_single
 from mark10_force_reader import mark10_f_values, save_to_file, random_generator
-from force_gauge_single import conditions_for_single_gauge
+from force_gauge_single import single_gauge_conditions
 from os.path import expanduser
 import time
 # Assuming 'login', 'check_before_start', 'errors', 'colors' are available
@@ -44,8 +44,7 @@ class AppWindow(QWidget):
 		self.ui.distance_label.setText("Displacement Increment (mm):") # Re-purpose for manual step input
 		
 		# Hide distal gauge elements
-		self.ui.distal_force_gauge_groupbox.setVisible(False)
-		self.ui.horizontalLayout_6.setVisible(False) # Hides all manual motor control buttons
+		self.ui.distal_force_gauge_groupbox.setVisible(False) # Hides all manual motor control buttons
 		
 		# --- Plotting Setup ---
 		self.plotter = plotter_and_data_single(self.ui)
@@ -54,10 +53,8 @@ class AppWindow(QWidget):
 		self.ui.graphing_layout.addWidget(self.plotter.canvas_all)
 		self.ui.graphing_layout.addWidget(self.plotter.toolbar_all)
 
-		self.button_clicks()
-
 		# Initialize force gauge conditions (now only for the single Mark-10 gauge)
-		self.gauge_handler = conditions_for_single_gauge(self.ui)
+		self.gauge_handler = single_gauge_conditions(self.ui)
 		self.data_file = None # Placeholder for the data file path
 
 		# Automatically connect and start force gauge thread
@@ -84,6 +81,8 @@ class AppWindow(QWidget):
 		self.read_data_timer = QtCore.QTimer()
 		self.read_data_timer.timeout.connect(self.record_manual_data)
 		self.record_interval_ms = 100 # Default 10 times per second
+
+		self.button_clicks()
 
 	def record_manual_data(self):
 		"""Reads force data and calculates displacement based on manual inputs."""
@@ -141,8 +140,8 @@ class AppWindow(QWidget):
 		# Update displayed force value
 		self.ui.proximal_force_value.setText(f"{self.gauge_handler.proximal_thread.present_reading:.3f} N")
 		
-		# Capture and display camera image
-		self.gauge_handler.got_image()
+		# # Capture and display camera image
+		# self.gauge_handler.got_image()
 		
 		# If a test is running, update the plot
 		if self.current_running_status:
@@ -257,12 +256,12 @@ class AppWindow(QWidget):
 			self.ui.start_test.setStyleSheet("background-color: rgb(255, 102, 102);")
 			
 	def closing_in(self):
-		"""Handles cleanup when closing the application."""
+		# """Handles cleanup when closing the application."""
 		if self.current_running_status:
 			self.read_data_timer.stop()
 			if self.ui.record_video.isChecked():
-				self.gauge_handler.images_from_camera.should_record = False # Stop video recording
-		self.gauge_handler.proximal_thread.stop() # Stop the force gauge thread
+				self.gauge_handler.images_from_camera.should_record = False  # Stop video recording
+		self.gauge_handler.proximal_thread.stop()  # Stop the force gauge thread
 
 
 # Function to handle application closing and motor stop

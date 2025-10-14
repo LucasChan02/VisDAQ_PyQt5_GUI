@@ -37,7 +37,7 @@ class image_taker:
         return image 
 # End of Placeholder classes
 
-class conditions_for_single_gauge():
+class single_gauge_conditions():
 	"""Manages the single Mark-10 force gauge connection, data handling, and camera interface."""
 
 	def __init__(self, ui):
@@ -86,20 +86,20 @@ class conditions_for_single_gauge():
 		# --- Data Saving ---
 		self.saver_thread = save_to_file() # QThread for saving data to file
 
-	def got_image(self):
-		"""Receives an image from the camera thread and displays it in the QGraphicsView."""
-		# Camera is implicitly connected/run in main_manual or assumed running
-		if True: # Always attempt if hardware is ready
-			try:
-				image = self.images_from_camera.final_image # Get the latest processed image
-				if image is not None:
-					# Convert OpenCV image (numpy array) to QImage and then to QPixmap for display
-					q_image = QtGui.QImage(image.data, image.shape[1], image.shape[0], image.strides[0], QtGui.QImage.Format.Format_RGB888)
-					self.pixmap = QtGui.QPixmap.fromImage(q_image)
-					self.pixmap_item.setPixmap(self.pixmap) # Set the pixmap to the QGraphicsPixmapItem
-			except Exception as e:
-				# print(f"Could not change video frame: {e}") 
-				pass
+	# def got_image(self):
+	# 	"""Receives an image from the camera thread and displays it in the QGraphicsView."""
+	# 	# Camera is implicitly connected/run in main_manual or assumed running
+	# 	if True: # Always attempt if hardware is ready
+	# 		try:
+	# 			image = self.images_from_camera.final_image # Get the latest processed image
+	# 			if image is not None:
+	# 				# Convert OpenCV image (numpy array) to QImage and then to QPixmap for display
+	# 				q_image = QtGui.QImage(image.data, image.shape[1], image.shape[0], image.strides[0], QtGui.QImage.Format.Format_RGB888)
+	# 				self.pixmap = QtGui.QPixmap.fromImage(q_image)
+	# 				self.pixmap_item.setPixmap(self.pixmap) # Set the pixmap to the QGraphicsPixmapItem
+	# 		except Exception as e:
+	# 			# print(f"Could not change video frame: {e}") 
+	# 			pass
 
 	def connect_proximal(self):
 		"""Connects or disconnects the single (Mark-10) force gauge and updates the UI."""

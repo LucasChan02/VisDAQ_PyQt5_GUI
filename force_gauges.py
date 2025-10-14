@@ -4,9 +4,8 @@ import os
 from PyQt6.QtWidgets import QMessageBox, QGraphicsPixmapItem
 from PyQt6 import QtWidgets, QtGui
 from errors import show_error
-from image_taker import image_taker
+# from image_taker import image_taker
 from forsentek_force_reader import forsentek_f_values
-from image_taker import image_taker
 from errors import show_error
 from colors import colors
 
@@ -62,11 +61,11 @@ class conditions_for_proximal():
 		self.ui.set_distal_zero.clicked.connect(self.distal_zero_clicked)
 
 		# --- Camera and Graphics View Setup -------
-		self.scene = QtWidgets.QGraphicsScene() # Graphics scene for displaying camera feed
-		self.scene.setSceneRect(self.scene.itemsBoundingRect())
-		self.pixmap_item = QGraphicsPixmapItem() # Item to hold the camera image
-		self.scene.addItem(self.pixmap_item)
-		self.images_from_camera = image_taker(self.proximal_thread,self.distal_thread) # Camera handler instance
+		# self.scene = QtWidgets.QGraphicsScene() # Graphics scene for displaying camera feed
+		# self.scene.setSceneRect(self.scene.itemsBoundingRect())
+		# self.pixmap_item = QGraphicsPixmapItem() # Item to hold the camera image
+		# self.scene.addItem(self.pixmap_item)
+		# self.images_from_camera = image_taker(self.proximal_thread,self.distal_thread) # Camera handler instance
 		# self.images_from_camera.image_signal.connect(self.got_image) # Connect camera signal if needed
 		# self.ui.connect_camera.clicked.connect(self.connect_cam) # Connect camera UI button
 

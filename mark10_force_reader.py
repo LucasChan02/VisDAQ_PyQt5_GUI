@@ -1,5 +1,4 @@
 from PyQt6 import QtCore
-# import PySide6.QtCore
 import time
 import serial
 import serial.tools.list_ports
@@ -34,18 +33,18 @@ class mark10_f_values(QtCore.QThread):
 			try:
 				self.s = serial.Serial(self.com, 115200)
 				time.sleep(0.1)
-				self.s.write(b'N\r\n')
+				self.s.write(b'N\r\n')				# Switch units to Newtons
 				time.sleep(0.1)
-				self.s.write(b'CUR\r\n')
+				self.s.write(b'CUR\r\n')            # Current mode (real time mode) for primary reading
 				print("Connected successfully")
 				self.should_read = True
-				return True                                       ### Set force unit to Newton
+				return True
 			except:
 				self.mark10_connection_fail_signal.emit()
 				return False
 		else:
 			self.mark10_not_found_signal.emit()
-			print("Didn't found any mark10")
+			print("Mark10 Device Not Found")
 			return False
 
 	def find_com(self):                             # This function finds the com port where mark 10 is connected  using manufacturer
@@ -65,12 +64,12 @@ class mark10_f_values(QtCore.QThread):
 		while self.should_read:                                   ### Loop will start for reading the data
 			if self.click_zero:
 				time.sleep(0.1)
-				self.s.write(b'Z\r\n')
+				self.s.write(b'Z\r\n')                           # Zero display and perform the CLR function
 				self.click_zero = False
 				time.sleep(0.1)
 				pass
 			try:
-				self.s.write(b'?\r\n')                           ### Sending signal to force gauge to get current force value
+				self.s.write(b'?\r\n')                           ### Sending signal to force gauge to request the displayed reading
 				# time.sleep(0.01)                                  ### Wait for 10 ms
 				available_bytes = self.s.in_waiting
 				if available_bytes >= 8:
@@ -82,7 +81,7 @@ class mark10_f_values(QtCore.QThread):
 			except:
 				self.s.close()
 				self.should_read = False
-				print('getting out')
+				print('Exiting thread.')
 				self.mark10_connection_lost_signal.emit()
 				break
 		pass
@@ -94,8 +93,9 @@ class mark10_f_values(QtCore.QThread):
 
 	def stop(self):
 		self.should_read = False                                    ### This will toggle the flag and stop the force reading
-		time.sleep(0.1)
-		self.s.close()                                              ### break com connection and then leave the thread
+		if self.s is not None:
+			self.s.close()                                              ### break com connection and then leave the thread
+		self.wait()
 
 	def set_zero(self):
 		# self.zero_value = self.read_value                		    ### This will give a new zero value
